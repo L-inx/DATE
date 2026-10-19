@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daylight Special Date Request 🌸✨</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        :root {
+            --bg-base: #fff0f3;
+            --pink-light: #ffe5ec;
+            --pink-soft: #ffc2d1;
+            --pink-mid: #ffb3c6;
+            --pink-vibrant: #ff8fab;
+            --pink-deep: #fb6f92;
+            --rose-accent: #e63946;
+            --gold-accent: #f4a261;
+            --glass-bg: rgba(255, 255, 255, 0.72);
+            --glass-border: rgba(255, 255, 255, 0.95);
+            --glass-shadow: 0 18px 40px rgba(255, 143, 171, 0.18);
+            --text-main: #4a3843;
+            --text-soft: #7a6370;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fff0f3 0%, #ffe5ec 40%, #ffc2d1 100%);
+            min-height: 100vh;
+            color: var(--text-main);
+            overflow-x: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px 16px;
+        }
+
+        .ambient-glow {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            z-index: 0;
+            pointer-events: none;
+            animation: pulseGlow 10s infinite alternate ease-in-out;
+        }
+
+        .glow-1 {
+            top: -12%;
+            left: -10%;
+            width: 55vw;
+            height: 55vw;
+            background: rgba(255, 179, 198, 0.6);
+        }
+
+        .glow-2 {
+            bottom: -12%;
+            right: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: rgba(255, 229, 236, 0.8);
+            animation-delay: -5s;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1) translate(0, 0); opacity: 0.75; }
+            100% { transform: scale(1.18) translate(35px, -25px); opacity: 0.95; }
+        }
+
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .main-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 680px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin: auto;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1.5px solid var(--glass-border);
+            border-radius: 30px;
+            box-shadow: var(--glass-shadow);
+            padding: 32px 28px;
+            text-align: center;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+            transform: skewX(-25deg);
+            transition: left 0.8s ease;
+        }
+
+        .glass-card:hover::before {
+            left: 200%;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 143, 171, 0.4);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--pink-deep);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 14px rgba(255, 143, 171, 0.2);
+            margin-bottom: 16px;
+            animation: bounceSoft 2.5s infinite ease-in-out;
+        }
+
+        @keyframes bounceSoft {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .main-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 3.2rem;
+            color: var(--pink-deep);
+            text-shadow: 2px 3px 6px rgba(255, 179, 198, 0.5);
+            line-height: 1.25;
+            margin-bottom: 10px;
+        }
+
+        .sub-title {
+            font-size: 1.05rem;
+            color: var(--text-soft);
+            font-weight: 500;
+        }
+
+        .gif-container {
+            width: 170px;
+            height: 170px;
+            margin: 18px auto 6px;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            box-shadow: 0 12px 30px rgba(251, 111, 146, 0.25);
+            overflow: hidden;
+            position: relative;
+            background: #fff0f3;
+            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .gif-container:hover {
+            transform: scale(1.06) rotate(3deg);
+        }
+
+        .gif-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .date-badge {
+            margin-top: 16px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.25rem;
+            color: var(--pink-deep);
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #ffffff, #ffe5ec);
+            padding: 10px 24px;
+            border-radius: 25px;
+            border: 1.5px solid rgba(255, 179, 198, 0.8);
+            box-shadow: 0 6px 18px rgba(251, 111, 146, 0.15);
+        }
+
+        .section-title {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--pink-deep);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .time-box {
+            background: rgba(255, 255, 255, 0.88);
+            border: 1.5px solid rgba(255, 179, 198, 0.6);
+            border-radius: 22px;
+            padding: 16px 8px;
+            box-shadow: 0 8px 22px rgba(255, 143, 171, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .time-box:hover {
+            transform: translateY(-4px);
+            border-color: var(--pink-vibrant);
+        }
+
+        .time-num {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--pink-deep);
+            line-height: 1;
+        }
+
+        .time-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-soft);
+            margin-top: 6px;
+        }
+
+        .promise-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(255,229,236,0.85));
+            border: 2px dashed var(--pink-vibrant);
+            border-radius: 26px;
+            padding: 22px 20px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            text-align: left;
+            box-shadow: 0 10px 25px rgba(251, 111, 146, 0.12);
+        }
+
+        .promise-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff8fab, #fb6f92);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+            box-shadow: 0 6px 16px rgba(251, 111, 146, 0.3);
+        }
+
+        .promise-title {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--pink-deep);
+            margin-bottom: 4px;
+        }
+
+        .promise-text {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            line-height: 1.4;
+        }
+
+        .agenda-card {
+            text-align: left;
+        }
+
+        .agenda-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 15px;
+        }
+
+        .agenda-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(255, 255, 255, 0.78);
+            border: 1.5px solid rgba(255, 179, 198, 0.5);
+            padding: 16px 20px;
+            border-radius: 22px;
+            transition: all 0.3s ease;
+        }
+
+        .agenda-item.highlight-home {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,240,243,0.95));
+            border: 2px solid var(--pink-vibrant);
+            box-shadow: 0 8px 20px rgba(251, 111, 146, 0.18);
+        }
+
+        .agenda-item:hover {
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateX(6px);
+            box-shadow: 0 8px 22px rgba(255, 143, 171, 0.18);
+        }
+
+        .agenda-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #ffe5ec, #ffc2d1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            color: var(--pink-deep);
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(251, 111, 146, 0.15);
+        }
+
+        .agenda-details {
+            flex: 1;
+        }
+
+        .agenda-time {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--pink-deep);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .agenda-title {
+            font-weight: 700;
+            color: var(--text-main);
+            font-size: 1.05rem;
+        }
+
+        .agenda-desc {
+            font-size: 0.88rem;
+            color: var(--text-soft);
+            margin-top: 2px;
+        }
+
+        .rsvp-card {
+            position: relative;
+            overflow: visible;
+        }
+
+        .rsvp-question {
+            font-family: 'Pacifico', cursive;
+            font-size: 2.3rem;
+            color: var(--pink-deep);
+            margin-bottom: 22px;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            min-height: 70px;
+            position: relative;
+        }
+
+        .btn {
+            padding: 14px 36px;
+            border-radius: 50px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #ff8fab 0%, #fb6f92 100%);
+            color: white;
+            box-shadow: 0 10px 25px rgba(251, 111, 146, 0.4);
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.08) translateY(-3px);
+            box-shadow: 0 15px 30px rgba(251, 111, 146, 0.5);
+        }
+
+        .btn-no {
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--text-soft);
+            border: 1px solid rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 5;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(74, 56, 67, 0.45);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background: rgba(255, 255, 255, 0.96);
+            border: 2px solid var(--pink-soft);
+            border-radius: 32px;
+            padding: 35px 25px;
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(251, 111, 146, 0.3);
+            transform: scale(0.8) translateY(30px);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-gif {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            overflow: hidden;
+            border: 3px solid var(--pink-vibrant);
+        }
+
+        .modal-gif img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 2.5rem;
+            color: var(--pink-deep);
+            margin-bottom: 10px;
+        }
+
+        .modal-text {
+            font-size: 1rem;
+            color: var(--text-main);
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .modal-close-btn {
+            background: linear-gradient(135deg, #ff8fab, #fb6f92);
+            color: white;
+            padding: 12px 32px;
+            border-radius: 50px;
+            border: none;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(251, 111, 146, 0.3);
+            transition: transform 0.2s ease;
+        }
+
+        .modal-close-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .footer-text {
+            font-size: 0.85rem;
+            color: var(--text-soft);
+            text-align: center;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .number-pop {
+            animation: popAnim 0.3s ease;
+        }
+
+        @keyframes popAnim {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.25); color: var(--pink-deep); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 480px) {
+            .main-title { font-size: 2.5rem; }
+            .countdown-grid { gap: 8px; }
+            .time-box { padding: 12px 4px; }
+            .time-num { font-size: 1.7rem; }
+            .time-label { font-size: 0.65rem; }
+            .btn { padding: 12px 28px; font-size: 1rem; }
+            .gif-container { width: 140px; height: 140px; }
+            .promise-card { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+
+    <canvas id="particleCanvas"></canvas>
+
+    <div class="main-container">
+
+        <div class="glass-card header-card">
+            <div class="badge">
+                <i class="fa-solid fa-sparkles"></i> Invitation
+            </div>
+            <h1 class="main-title">Our Special Day Awaits 💕</h1>
+            <p class="sub-title">An amazing daytime date planned with all my love, just for you loveee koooo.</p>
+            
+            <div class="gif-container">
+
+                <img id="mainGif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z2cGZwbXAwNW01N2pmaXQxbzBsbmsxbWZ5NGptdGFzaWhuZ3Q2dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Lq0h93752f6J9tijrh/giphy.gif" alt="Cute Cute Pink Kitty GIF" onerror="this.src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnptZWszNDk2eDRoZTFqNGMxaHRocXg0ZGs4bGFmd3p0NnRkeHF0byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JPxQXmyU55KSnvBaXc/giphy.gif'">
+            </div>
+
+            <div class="date-badge">
+                <i class="fa-regular fa-calendar-heart"></i> November 2, 2026
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <div class="section-title">
+                <i class="fa-solid fa-hourglass-half" style="color: var(--pink-vibrant);"></i>
+                <span>Counting Down The Seconds</span>
+            </div>
+            <div class="countdown-grid">
+                <div class="time-box">
+                    <span class="time-num" id="days">00</span>
+                    <span class="time-label">Days</span>
+                </div>
+                <div class="time-box">
+                    <span class="time-num" id="hours">00</span>
+                    <span class="time-label">Hours</span>
+                </div>
+                <div class="time-box">
+                    <span class="time-num" id="minutes">00</span>
+                    <span class="time-label">Minutes</span>
+                </div>
+                <div class="time-box">
+                    <span class="time-num" id="seconds">00</span>
+                    <span class="time-label">Seconds</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="promise-card">
+            <div class="promise-icon">
+                <i class="fa-solid fa-shield-heart"></i>
+            </div>
+            <div>
+                <div class="promise-title">Home Before Curfew Promise! 💖</div>
+                <div class="promise-text">Guaranteed home early, relaxed, and happy before sunset! 100% parent-approved & completely stress-free! ✨</div>
+            </div>
+        </div>
+
+        <div class="glass-card agenda-card">
+            <div class="section-title" style="justify-content: flex-start;">
+                <i class="fa-solid fa-heart-circle-bolt" style="color: var(--pink-vibrant);"></i>
+                <span>Daytime Fun Itinerary (Home Early Guaranteed!) 🌸</span>
+            </div>
+            
+            <div class="agenda-timeline">
+                <div class="agenda-item">
+                    <div class="agenda-icon">
+                        <i class="fa-solid fa-mug-hot"></i>
+                    </div>
+                    <div class="agenda-details">
+                        <div class="agenda-time">10:30 AM</div>
+                        <div class="agenda-title">Morning Pastries & Milktea / Coffee ☕</div>
+                        <div class="agenda-desc">A sweet start with warm drinks and fresh morning treats.</div>
+                    </div>
+                </div>
+
+                <div class="agenda-item">
+                    <div class="agenda-icon">
+                        <i class="fa-solid fa-camera-retro"></i>
+                    </div>
+                    <div class="agenda-details">
+                        <div class="agenda-time">01:00 PM</div>
+                        <div class="agenda-title">Cute Stroll & Photo Booth Fun 📸</div>
+                        <div class="agenda-desc">Capturing cute memory photos and amazing pretty spots together.</div>
+                    </div>
+                </div>
+
+                <div class="agenda-item">
+                    <div class="agenda-icon">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
+                    <div class="agenda-details">
+                        <div class="agenda-time">03:30 PM</div>
+                        <div class="agenda-title">Delicious Afternoon Lunch & Dessert 🍰</div>
+                        <div class="agenda-desc">Relaxed, cozy lunch and sweet dessert before heading back.</div>
+                    </div>
+                </div>
+
+                <div class="agenda-item">
+                    <div class="agenda-icon">
+                        <i class="fa-solid fa-house-heart"></i>
+                    </div>
+                    <div class="agenda-details">
+                        <div class="agenda-time">06:00 PM</div>
+                        <div class="agenda-title">Safe & Early Drop Off Home 🏡</div>
+                        <div class="agenda-desc">Arriving safely home with plenty of time before curfew!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-card rsvp-card">
+            <h2 class="rsvp-question">Will you go on this daylight date with me? 💖</h2>
+            <div class="btn-group" id="btnGroup">
+                <button class="btn btn-yes" id="yesBtn" onclick="handleYesClick()">
+                    <i class="fa-solid fa-heart"></i> YES, ABSOLUTELY! 💖
+                </button>
+                <button class="btn btn-no" id="noBtn">
+                    No 🥺
+                </button>
+            </div>
+        </div>
+
+        <div class="footer-text">
+            Crafted with love for November 2 • 10:00 AM <i class="fa-solid fa-heart" style="color: var(--pink-vibrant);"></i>
+        </div>
+    </div>
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-card">
+            <div class="modal-gif">
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnptZWszNDk2eDRoZTFqNGMxaHRocXg0ZGs4bGFmd3p0NnRkeHF0byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JPxQXmyU55KSnvBaXc/giphy.gif" alt="Happy Cute Cat GIF">
+            </div>
+            <h2 class="modal-title">YAY! It's a Date! 🎉</h2>
+            <p class="modal-text">
+                You've made me the happiest person ever! 🥰<br>
+                Mark your calendar for <strong>November 2</strong>.<br>
+                Super safe, fun daytime plans guaranteed you'll be home early, don't worry love, Iloveyousoosososoomuchhhmwaaaa! 💕
+            </p>
+            <button class="modal-close-btn" onclick="closeModal()">Can't Wait! ✨</button>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + Math.random() * 20;
+                this.size = Math.random() * 12 + 6;
+                this.speedY = Math.random() * 1.2 + 0.4;
+                this.speedX = Math.random() * 0.6 - 0.3;
+                this.opacity = Math.random() * 0.5 + 0.3;
+                this.color = ['#ffe5ec', '#ffc2d1', '#ff8fab', '#ffffff'][Math.floor(Math.random() * 4)];
+                this.isHeart = Math.random() > 0.35;
+                this.rotation = Math.random() * Math.PI * 2;
+                this.rotSpeed = (Math.random() - 0.5) * 0.02;
+            }
+
+            update() {
+                this.y -= this.speedY;
+                this.x += this.speedX;
+                this.rotation += this.rotSpeed;
+
+                if (this.y < -30) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation);
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = this.color;
+
+                if (this.isHeart) {
+                    ctx.beginPath();
+                    let topCurveHeight = this.size * 0.3;
+                    ctx.moveTo(0, topCurveHeight);
+                    ctx.bezierCurveTo(0, 0, -this.size / 2, 0, -this.size / 2, topCurveHeight);
+                    ctx.bezierCurveTo(-this.size / 2, (this.size + topCurveHeight) / 2, 0, this.size, 0, this.size);
+                    ctx.bezierCurveTo(0, this.size, this.size / 2, (this.size + topCurveHeight) / 2, this.size / 2, topCurveHeight);
+                    ctx.bezierCurveTo(this.size / 2, 0, 0, 0, 0, topCurveHeight);
+                    ctx.closePath();
+                    ctx.fill();
+                } else {
+                    ctx.beginPath();
+                    ctx.arc(0, 0, this.size / 3, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < 35; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        const targetDate = new Date('November 2, 2026 10:00:00').getTime();
+
+        const daysEl = document.getElementById('days');
+        const hoursEl = document.getElementById('hours');
+        const minutesEl = document.getElementById('minutes');
+        const secondsEl = document.getElementById('seconds');
+
+        function updateElementWithPop(el, newValue) {
+            if (el.innerText !== newValue) {
+                el.innerText = newValue;
+                el.classList.remove('number-pop');
+                void el.offsetWidth;
+                el.classList.add('number-pop');
+            }
+        }
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                daysEl.innerText = "00";
+                hoursEl.innerText = "00";
+                minutesEl.innerText = "00";
+                secondsEl.innerText = "00";
+                return;
+            }
+
+            const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+            updateElementWithPop(daysEl, String(d).padStart(2, '0'));
+            updateElementWithPop(hoursEl, String(h).padStart(2, '0'));
+            updateElementWithPop(minutesEl, String(m).padStart(2, '0'));
+            updateElementWithPop(secondsEl, String(s).padStart(2, '0'));
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+
+        let dodgeCount = 0;
+
+        function dodgeButton() {
+            dodgeCount++;
+            
+            const currentScale = 1 + (dodgeCount * 0.08);
+            yesBtn.style.transform = `scale(${Math.min(currentScale, 1.45)})`;
+
+            const x = (Math.random() - 0.5) * 220;
+            const y = (Math.random() - 0.5) * 120;
+
+            noBtn.style.transform = `translate(${x}px, ${y}px) scale(${Math.max(1 - dodgeCount * 0.08, 0.5)})`;
+        }
+
+        noBtn.addEventListener('mouseenter', dodgeButton);
+        noBtn.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            dodgeButton();
+        });
+
+
+        function handleYesClick() {
+            const duration = 3.5 * 1000;
+            const animationEnd = Date.now() + duration;
+
+            (function frame() {
+                const timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) return;
+
+                confetti({
+                    particleCount: 3,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#ff8fab', '#ffe5ec', '#fb6f92', '#f4a261']
+                });
+                confetti({
+                    particleCount: 3,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#ff8fab', '#ffe5ec', '#fb6f92', '#f4a261']
+                });
+
+                requestAnimationFrame(frame);
+            })();
+
+            setTimeout(() => {
+                document.getElementById('modalOverlay').classList.add('active');
+            }, 300);
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
